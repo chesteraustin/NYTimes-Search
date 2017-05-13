@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	$("#search").on("click",function(){
+	$("#runSearch").on("click",function(){
 		var term = $("#searchTerm").val();
 		search(term);
 	});
