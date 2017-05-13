@@ -1,17 +1,17 @@
 $(document).ready(function(){
     console.log("ready");
-    search();
+    search("trump");
 })
 
-function search(){
+function search(term){
 
 var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
 
 //article search API
 var apiKey = "api-key=010df052716e4cef8459eeb85a014d07&";
-var q = "q=obama"
+var q = "q=" + encodeURIComponent(term);
 
-queryURL = queryURL + apiKey + q
+queryURL = queryURL + apiKey + q;
 
 $.ajax({
         url: queryURL,
