@@ -18,6 +18,10 @@ $.ajax({
         method: "GET"
       }).done(function(response) {
               console.log(response);
-
+	for(i = 0; i < response.docs; i++){
+		var title =  response.docs[i].headline.main;
+		var contenet = reponse.docs[i].web_url;
+		var author = reponse.docs[i].byline.original;
+	}
 })
   };
