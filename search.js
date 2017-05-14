@@ -13,16 +13,33 @@ function search(term){
 	var q = "q=" + encodeURIComponent(term);
 
 	queryURL = queryURL + apiKey + q;
+$.ajax({
+        url: queryURL,
+        method: "GET"
+      }).done(function(response) {
 
-	$.ajax({
-		url: queryURL,
-		method: "GET"
-	})
-	.done(function(response) {
-		for(i = 0; i < response.docs; i++){
-			var title =  response.docs[i].headline.main;
-			var contenet = reponse.docs[i].web_url;
-			var author = reponse.docs[i].byline.original;
-		}
-	})
+          for(i = 0; i < response.response.docs.length; i++){
+              console.log(response.response.docs[i]);
+
+            var title =  response.response.docs[i].headline.main;
+            var content = response.response.docs[i].web_url;
+
+			//Bylines are not guaranateed
+			if (typeof  response.response.docs[i].byline ==! "undefined")
+			var author = response.response.docs[i].byline.original;
+
+            var display = $("<div>");
+            var titleContainer = $("<h1>");
+            var authorContainer = $("<h2>");
+            var contentContainer = $("<a>");
+                titleContainer.text(title);
+                authorContainer.text(author);
+                contentContainer.text(content);
+			display.append(titleContainer)
+			display.append(authorContainer)
+			display.append(contentContainer)
+			console.log(display)
+			$("#topArticles").append(display);
+        }
+    })
 }
