@@ -32,6 +32,7 @@ $.ajax({
             var titleContainer = $("<h1>");
             var authorContainer = $("<h2>");
             var contentContainer = $("<a>");
+			contentContainer.attr("href", content);
                 titleContainer.text(title);
                 authorContainer.text(author);
                 contentContainer.text(content);
